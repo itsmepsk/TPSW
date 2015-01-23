@@ -16,5 +16,8 @@ class Details extends CI_Controller {
 		
 	}
 	
+	public function submit() {
+		$filed_list = $this->fetch->fetch_field();
+	}
 	
 }
