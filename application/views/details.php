@@ -74,7 +74,7 @@
 				'sc'				=>				'SC',
 				'st'				=>				'ST'
 			);
-			$f_email				= 			array(
+			$f_email					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'email',
 					'id'				=>				'email',
@@ -114,7 +114,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_hostel_address				= 			array(
+			$f_hostel_address			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'hostel_address',
 					'id'				=>				'hostel_address',
@@ -122,7 +122,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_1				= 			array(
+			$f_sgpa_1					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_1',
 					'id'				=>				'sgpa_1',
@@ -130,7 +130,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_2				= 			array(
+			$f_sgpa_2					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_2',
 					'id'				=>				'sgpa_2',
@@ -138,7 +138,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_3				= 			array(
+			$f_sgpa_3					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_3',
 					'id'				=>				'sgpa_3',
@@ -146,7 +146,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_4				= 			array(
+			$f_sgpa_4					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_4',
 					'id'				=>				'sgpa_4',
@@ -154,7 +154,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_5				= 			array(
+			$f_sgpa_5					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_5',
 					'id'				=>				'sgpa_5',
@@ -162,7 +162,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_6				= 			array(
+			$f_sgpa_6					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_6',
 					'id'				=>				'sgpa_6',
@@ -170,7 +170,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_7				= 			array(
+			$f_sgpa_7					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_7',
 					'id'				=>				'sgpa_7',
@@ -178,7 +178,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_sgpa_8				= 			array(
+			$f_sgpa_8					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'sgpa_8',
 					'id'				=>				'sgpa_8',
@@ -186,7 +186,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_cgpa				= 			array(
+			$f_cgpa						= 			array(
 					'type'				=>				'text',
 					'name'				=>				'cgpa',
 					'id'				=>				'cgpa',
@@ -194,7 +194,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_supplies				= 			array(
+			$f_supplies				    = 			array(
 					'type'				=>				'text',
 					'name'				=>				'supplies',
 					'id'				=>				'supplies',
@@ -202,7 +202,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_active_supplies				= 			array(
+			$f_active_supplies			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'active_supplies',
 					'id'				=>				'active_supplies',
@@ -226,7 +226,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_12_board				= 			array(
+			$f_12_board				    = 			array(
 					'type'				=>				'text',
 					'name'				=>				'12_board',
 					'id'				=>				'12_board',
@@ -242,7 +242,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_12_passing_year				= 			array(
+			$f_12_passing_year			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'12_passing_year',
 					'id'				=>				'12_passing_year',
@@ -250,7 +250,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_12_obtained_marks				= 			array(
+			$f_12_obtained_marks		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'12_obtained_marks',
 					'id'				=>				'12_obtained_marks',
@@ -258,7 +258,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_12_total_marks				= 			array(
+			$f_12_total_marks			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'12_total_marks',
 					'id'				=>				'12_total_marks',
@@ -274,7 +274,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_10_board				= 			array(
+			$f_10_board				    = 			array(
 					'type'				=>				'text',
 					'name'				=>				'10_board',
 					'id'				=>				'10_board',
@@ -290,7 +290,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_10_passing_year				= 			array(
+			$f_10_passing_year			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'10_passing_year',
 					'id'				=>				'10_passing_year',
@@ -298,7 +298,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_10_obtained_marks				= 			array(
+			$f_10_obtained_marks		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'10_obtained_marks',
 					'id'				=>				'10_obtained_marks',
@@ -306,7 +306,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_10_total_marks				= 			array(
+			$f_10_total_marks			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'10_total_marks',
 					'id'				=>				'10_total_marks',
@@ -326,7 +326,7 @@
 					'y'					=>				'yes',
 					'n'					=>				'no'
 			);
-			$f_disability_type				= 			array(
+			$f_disability_type			= 			array(
 					'type'				=>				'text',
 					'name'				=>				'disability_type',
 					'id'				=>				'disability_type',
@@ -334,7 +334,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_disability_percent				= 			array(
+			$f_disability_percent		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'disability_percent',
 					'id'				=>				'disability_percent',
@@ -358,7 +358,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_height				= 			array(
+			$f_height					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'height',
 					'id'				=>				'height',
@@ -366,7 +366,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_weight				= 			array(
+			$f_weight					= 			array(
 					'type'				=>				'text',
 					'name'				=>				'weight',
 					'id'				=>				'weight',
@@ -390,7 +390,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_scholastic_achievements				= 			array(
+			$f_scholastic_achievements	= 			array(
 					'type'				=>				'text',
 					'name'				=>				'scholastic_achievements',
 					'id'				=>				'scholastic_achievements',
@@ -398,7 +398,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_academic_projects				= 			array(
+			$f_academic_projects		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'academic_projects',
 					'id'				=>				'academic_projects',
@@ -406,7 +406,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_practical_training				= 			array(
+			$f_practical_training		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'practical_training',
 					'id'				=>				'practical_training',
@@ -414,7 +414,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_skills_capabilities				= 			array(
+			$f_skills_capabilities		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'skills_capabilities',
 					'id'				=>				'skills_capabilities',
@@ -422,7 +422,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_position_responsibility				= 			array(
+			$f_position_responsibility	= 			array(
 					'type'				=>				'text',
 					'name'				=>				'position_responsibility',
 					'id'				=>				'position_responsibility',
@@ -430,7 +430,7 @@
 					'aria-requires'		=>				'required',
 					'value'				=>				''
 			);
-			$f_extra_curriculars				= 			array(
+			$f_extra_curriculars		= 			array(
 					'type'				=>				'text',
 					'name'				=>				'extra_curriculars',
 					'id'				=>				'extra_curriculars',
