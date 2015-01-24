@@ -43,7 +43,21 @@ class Libraries extends CI_Controller {
 	
 	public function load_custom_libraries() {
 		
-		//$this->load->library('../controllers/fetch');
+		$this->load_models();
+		
+		$this->load_controllers();
+			
+	}
+	
+	public function load_models() {
+		
+		$this->load->model('fetch');
+		
+	}
+	
+	public function load_controllers() {
+		
+				
 		
 	}
 	
