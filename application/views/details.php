@@ -57,7 +57,7 @@
 		<?php echo form_input($f_name); ?>
 		<br>
 		<label>Branch:</label>
-		<?php echo form_dropdown($f_branch); ?>
+		<?php echo form_dropdown("branch",$f_branch); ?>
 		<?php echo form_close(); ?>
 	</body>
 </html>
