@@ -18,9 +18,7 @@ class Libraries extends CI_Controller {
 	
 	public function load_libraries() {
 		
-		$this->load_standard_libraries();
 		
-		$this->load_custom_libraries();
 		
 		
 		
@@ -51,7 +49,7 @@ class Libraries extends CI_Controller {
 	
 	public function load_models() {
 		
-		$this->load->model('fetch');
+		$this->load->model('functions');
 		
 	}
 	
