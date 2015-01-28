@@ -13,9 +13,19 @@
 			
 			//var_dump($f_data);
 			
+			if (isset($f_data['updated'])) {
+				
+				echo '<h1>Updated!</h1><br/>';
+				
+			}
 		
 		?>
 		<?php 
+		
+			$f_id					=			array(
+				'id'				=>				$f_data['id']
+			);
+			
 			$f_roll_no 				= 			array(
 				'type'				=>				'text',
 				'name'				=>				'roll_no',
@@ -44,15 +54,15 @@
 			);
 			
 			$f_branch				=			array(
-				'bt'				=>				'Bio-Technology',
-				'che'				=>				'Chemical Engineering',
-				'civ'				=>				'Civil Engineering',
-				'cse'				=>				'Computer Science and Engineering',
-				'ee'				=>				'Electrical Engineering',
-				'ece'				=>				'Electronics and Communication',
-				'it'				=>				'Information Technology',
-				'me'				=>				'Mechanical Engineering',
-				'mme'				=>				'Metallurgical & Materials Engineering'
+				'BT'				=>				'Bio-Technology',
+				'CHE'				=>				'Chemical Engineering',
+				'CIV'				=>				'Civil Engineering',
+				'CSE'				=>				'Computer Science and Engineering',
+				'EE'				=>				'Electrical Engineering',
+				'ECE'				=>				'Electronics and Communication',
+				'IT'				=>				'Information Technology',
+				'ME'				=>				'Mechanical Engineering',
+				'MME'				=>				'Metallurgical & Materials Engineering'
 			);
 			$f_current_sem			=			array(
 				'1'					=>				'1st',
@@ -447,10 +457,21 @@
 				'aria-requires'		=>				'required',
 				'value'				=>				$f_data['extra_curriculars']
 			);
+			
+			$f_submit				=			array(
+				'type'				=>				'submit',
+				'value'				=>				'Update',
+				'name'				=>				'update',
+				'class'				=>				'',
+				'id'				=>				''
+			);
 				
 		?>
-	
+		
+		<?php echo validation_errors(); ?>
 		<?php echo form_open(base_url().'details/submit'); ?>
+		
+		<?php echo form_hidden($f_id,''); ?>
 		<label>Registration Number: </label>
 		<?php echo form_input($f_registration_no); ?>
 		<br><br>
@@ -464,7 +485,7 @@
 		<?php echo form_dropdown("branch",$f_branch,$f_data['branch']); ?>
 		<br><br>
 		<label>Current Semester:</label>
-		<?php echo form_dropdown("current_sem", $f_current_sem); ?>
+		<?php echo form_dropdown("current_sem", $f_current_sem,$f_data['current_sem']); ?>
 		<br><br>
 		<label>Sex:</label>
 		<?php echo form_dropdown("sex", $f_sex); ?>
@@ -613,6 +634,7 @@
 		<label>Extra Curriculars:</label>
 		<?php echo form_textarea($f_extra_curriculars); ?>
 		<br><br>
+		<?php echo form_submit($f_submit,'Update'); ?>
 		<?php echo form_close(); ?>
 	</body>
 </html>

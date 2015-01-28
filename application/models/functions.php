@@ -6,8 +6,11 @@ class Functions extends CI_Model {
 		
 		$fields_obj = $this->fetch_fields_from_db();
 		$fields = array();
+		
 		foreach ($fields_obj as $class) {
+			
 			array_push($fields,$class->Field);
+			
 		}
 		
 		return  $fields;
@@ -28,6 +31,19 @@ class Functions extends CI_Model {
 		$result = $query->result();
 		//var_dump($result);
 		return $result[0];
+		
+	}
+	
+	public function update_details($details) {
+		
+		unset($details['update']);
+		$query = $this->db->update("details",$details,"id = 1");
+		
+		if($query) {
+			
+			return true;
+			
+		}
 		
 	}
 	
