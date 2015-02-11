@@ -8,26 +8,34 @@ class Details extends CI_Controller {
 		
 		$this->load_libraries();
 		$this->load->model('functions');
+                $logged_in = $this->customfunctions->is_logged_in();
+                
+                if(! $logged_in) {
+                    
+                    redirect(base_url()."login");
+                    
+                }
 		
 	}
 	
-	public function index($status = NULL) {		
+	public function index() {		
 		
-        $field_list = $this->functions->fetch_fields();        
-        $data['details'] = $this->get_data(1);
-        $param = sha1(md5("updated"));
-        $value = md5(sha1("updated"));
-        session_start();
-        //echo $_SESSION[$param];
-        if (isset($_SESSION[$param]) && ($_SESSION[$param] == $value)) {
-        	
-        	$data['details']->updated = TRUE;
-        	unset($_SESSION[$param]);
-        	session_destroy();
-        	
-        }
-        
-        $this->load->view('details',$data);
+                $field_list = $this->functions->fetch_fields(); 
+                $id = $this->session->userdata('user')['id'];
+                $data['details'] = $this->get_data($id);
+                $param = sha1(md5("updated"));
+                $value = md5(sha1("updated"));
+                session_start();
+                //echo $_SESSION[$param];
+                if (isset($_SESSION[$param]) && ($_SESSION[$param] == $value)) {
+
+                        $data['details']->updated = TRUE;
+                        unset($_SESSION[$param]);
+                        session_destroy();
+
+                }
+
+                $this->load->view('details',$data);
         
 	}
 	
@@ -56,7 +64,51 @@ class Details extends CI_Controller {
 		
 	}
 	
-	public function validate_fields($details) {
+	
+	
+	public function load_libraries() {
+		
+		$this->load_custom_libraries();
+		
+	}
+	
+	
+	public function load_custom_libraries() {
+		
+		$this->load_models();
+		
+		$this->load_controllers();
+			
+	}
+	
+	public function load_models() {
+		
+		$this->load->model('functions');
+		
+	}
+	
+	public function load_controllers() {
+		
+		
+		
+	}
+	
+	function _alpha_space($str_in = '') {
+		
+	    if (! preg_match("/^([a-z0-9 ])+$/i", $str_in)) {
+	    	
+	        $this->form_validation->set_message('_alpha_dash_space', 'The %s field may only contain alpha-numeric characters, spaces, underscores, and dashes.');
+	        return FALSE;
+	        
+	    }
+	    else {
+	    	
+	        return TRUE;
+	        
+	    }
+	} 
+        
+        public function validate_fields($details) {
 		
 		$config = array(
 			array(
@@ -269,49 +321,12 @@ class Details extends CI_Controller {
 			$this->load->view('details',$data);
 			
 		}
+                else {
+                    
+                    return TRUE;
+                    
+                }
 		
 	}
-	
-	public function load_libraries() {
-		
-		$this->load_custom_libraries();
-		
-	}
-	
-	
-	public function load_custom_libraries() {
-		
-		$this->load_models();
-		
-		$this->load_controllers();
-			
-	}
-	
-	public function load_models() {
-		
-		$this->load->model('functions');
-		
-	}
-	
-	public function load_controllers() {
-		
-		
-		
-	}
-	
-	function _alpha_space($str_in = '') {
-		
-	    if (! preg_match("/^([a-z0-9 ])+$/i", $str_in)) {
-	    	
-	        $this->form_validation->set_message('_alpha_dash_space', 'The %s field may only contain alpha-numeric characters, spaces, underscores, and dashes.');
-	        return FALSE;
-	        
-	    }
-	    else {
-	    	
-	        return TRUE;
-	        
-	    }
-	} 
 	
 }

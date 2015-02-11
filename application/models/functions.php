@@ -46,5 +46,13 @@ class Functions extends CI_Model {
 		}
 		
 	}
+        
+        public function user_exists($username,$password) {
+            
+            $query = $this->db->query("SELECT id FROM login_details WHERE roll_no = '$username' AND password = '$password'");
+            $result = $query->result();
+            return $result;
+            
+        }
 	
 }
