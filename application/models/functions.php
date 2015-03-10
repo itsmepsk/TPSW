@@ -6,13 +6,13 @@ class Functions extends CI_Model {
 		
 		$fields_obj = $this->fetch_fields_from_db();
 		$fields = array();
-		
+		//var_dump($fields_obj);
 		foreach ($fields_obj as $class) {
 			
 			array_push($fields,$class->Field);
 			
 		}
-		
+		//var_dump($fields);
 		return  $fields;
 		
 	}
@@ -25,7 +25,7 @@ class Functions extends CI_Model {
 		
 	}
 	
-	public function get_data($id = 1) {
+	public function get_data($id) {
 		
 		$query = $this->db->query("SELECT * FROM details WHERE id = '$id'");
 		$result = $query->result();
@@ -34,10 +34,9 @@ class Functions extends CI_Model {
 		
 	}
 	
-	public function update_details($details) {
+	public function update_details($id,$details) {
 		
-		unset($details['update']);
-		$query = $this->db->update("details",$details,"id = 1");
+		$query = $this->db->update("details",$details,"id = '$id'");
 		
 		if($query) {
 			
@@ -47,12 +46,54 @@ class Functions extends CI_Model {
 		
 	}
         
-        public function user_exists($username,$password) {
-            
-            $query = $this->db->query("SELECT id FROM login_details WHERE roll_no = '$username' AND password = '$password'");
-            $result = $query->result();
-            return $result;
-            
-        }
+    public function user_exists($username,$password) {
+
+    	$query = $this->db->query("SELECT id FROM login_details WHERE roll_no = '$username' AND password = '$password'");
+        $result = $query->result();
+        return $result;
+                    
+    }
+    
+    public function email_exists($email) {
+    	
+    	//echo $email."<br>";
+    	$query = $this->db->query("SELECT id FROM details WHERE email = '$email'");
+    	$result = $query->result();
+    	//var_dump($result);
+    	return $result;
+    	
+    }
+    
+    public function update_photo($id,$name) {
+    	
+    	$details = array(
+    		'image'	=>	$name
+    	);
+    	
+    	$query = $this->db->update("details",$details,"id = '$id'");
+    	
+    	if($query) {
+    			
+    		return true;
+    			
+    	}
+    	
+    }
+    
+    public function delete_image($id) {
+        
+        $details = array(
+            'image' =>  ''
+        );
+        
+        $query = $this->db->update("details",$details,"id = '$id'");
+        
+        if($query) {
+    			
+    		return true;
+    			
+    	}
+                
+    }
 	
 }

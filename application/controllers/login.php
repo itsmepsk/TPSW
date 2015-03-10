@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		
 		parent :: __construct();
 		
-                $this->load->model('functions');
+        $this->load->model('functions');
 		$this->load->library('customfunctions');
                 
 		if($this->customfunctions->is_logged_in()) {
@@ -19,13 +19,80 @@ class Login extends CI_Controller {
 	
 	public function index() {
 		
-		$this->load->view('login');
+//		$data['reset_success'] = FALSE;
+//		$data['reset_error'] = FALSE;
+//		$data['login_error'] = FALSE;
+		$this->load->view('signin');
 		
 	}
 	
 	public function validate() {
 		
-		$this->validate_fields();
+		if ($_POST['login_submit']) {
+
+			//var_dump($_POST);
+			$this->validate_fields();
+		
+		}
+		else {
+			
+			redirect(base_url());
+			
+		}
+		
+	}
+	
+	public function reset() {
+		
+		if ($_POST['reset_submit']) {
+			
+			//var_dump($_POST);
+			
+			$id = $this->validate_email();
+			
+			//$data['reset_error'] = FALSE;
+			
+			if ($id == NULL) {
+				
+				$data['reset_error'] = TRUE;
+				
+			}
+			else {
+				
+				$email = $this->input->post('reset_email');
+				$data['reset_success'] = TRUE;
+				$data['reset_email'] = $email;
+				
+			}
+			
+			$this->load->view('signin',$data);
+			
+		}
+		else {
+			
+			$this->index();
+			redirect(base_url()."login");
+			
+		}
+		
+	}
+	
+	public function validate_email() {
+		
+			
+		$email = $this->input->post('reset_email');
+		$id = $this->check_email(trim($email));
+		
+		return $id;
+			
+		
+	}
+	
+	public function check_email($email) {
+		
+		$id = $this->functions->email_exists($email);
+		
+		return $id;
 		
 	}
 	
@@ -33,30 +100,48 @@ class Login extends CI_Controller {
 		
 		$config	= array(
 			array(
-				'field'		=>		'username',
-				'label'		=>		'Username',
-				'rules'		=>		'required|trim|xss_clean|alpha_numeric'
+				'field'		=>		'roll_no',
+				'label'		=>		'Roll No.',
+				'rules'		=>		'required|trim|xss_clean|callback_remove_special|callback_to_uppercase'
 			),
 			array(
 				'field'		=>		'password',
-				'label'		=>		'password',
+				'label'		=>		'Password',
 				'rules'		=>		'required|trim|xss_clean|min_length[8]'
 			)
 		);
 		$this->form_validation->set_rules($config);
 		
 		if($this->form_validation->run() == FALSE) {
+              
+			//$data['login_error'] = TRUE;
+//			$data['reset_success'] = FALSE;
+//			$data['reset_error'] = FALSE;
+                        $this->load->view('signin');
                     
-                    $this->load->view('login');
-                    
-                }
+		}
 		else {
                     
-                    $username = $this->input->post('username');
-                    $password = $this->input->post('password');
-                    $this->check_user($username ,$password );
+				$username = $this->input->post('roll_no');
+				$password = $this->input->post('password');
+				//echo $username."<br>";
+				//echo $password."<br>";
+				$this->check_user($username ,$password );
                     
-                }
+		}
+	}
+	
+	
+	public function remove_special($roll) {
+		
+		return preg_replace('/[^a-zA-Z0-9]/', '', $roll);
+		
+	}
+	
+	public function to_uppercase($roll) {
+		
+		return strtoupper($roll);
+		
 	}
 	
         public function check_user($username ,$password ) {
@@ -64,8 +149,11 @@ class Login extends CI_Controller {
                 $result = $this->functions->user_exists($username,$password);
                     
                 if ($result == NULL) {
-
-                    echo 'Invalid Credentials.';
+                	
+                	$data['login_error'] = TRUE;
+//                	$data['reset_error'] = FALSE;
+                	$this->load->view('signin',$data);
+                    //echo 'Invalid Credentials.';
 
                 }
                 else {
@@ -78,7 +166,7 @@ class Login extends CI_Controller {
                     }
                     
                     $this->session->set_userdata('user',$user);
-                    //var_dump($result);
+                    redirect(base_url());
 
                 }
             
