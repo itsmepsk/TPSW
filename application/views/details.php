@@ -1642,31 +1642,43 @@
                                                             </h4>
                                                     </div>
                                             </a>
-                                            <div id="collapseSeven" class="panel-collapse collapse
-                                                 <?php
-                                                    if (isset($updated[sha1(md5('updated_resume'))])) {
-                                                        echo "in";
-                                                    }
-                                                 ?>
-                                                 " role="tabpanel" aria-labelledby="headingSeven">
-                                                <div class="panel-body saman">
-                                                    <div>
-                                                            <p><b>Your personalised resume</b></p>
-                                                            <div class="input-append">
-                                                                    <a onclick="$('input[id=leresume]').click();" class="btn" data-toggle="tooltip" title="Upload Resume"><img src=<?php echo base_url()."static/images/up1.png"; ?> width=50px></a>
-                                                                    <a onclick="$('input[id=leresume]').click();" class="btn" data-toggle="tooltip" title="Download Resume"><img src=<?php echo base_url()."/static/images/down1.png"; ?> width=50px></a>
-                                                                    <a onclick="$('input[id=leresume]').click();" class="btn" data-toggle="tooltip" title="Delete Resume"><img src=<?php echo base_url()."/static/images/trash.png"; ?> width=50px></a>
-                                                            </div>
-                                                    </div>
-                                                    <div>
-                                                        <br>
-                                                        <p>
-                                                            <b>Special Feature</b>
-                                                        </p>
-                                                        <a href="#"><b>Download your resume in college format</b></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
+                                            
+                           <div id="collapseSeven" class="panel-collapse collapse 
+                           <?php
+                               if (isset($updated[sha1(md5('updated_resume'))])) {
+                                    	echo "in";
+                               }
+                           ?>
+                           " role="tabpanel" aria-labelledby="headingSeven">
+							<div class="panel-body saman">
+								<div>
+									<p><b>Your personalised resume</b></p>
+									<input id="lecv" type="file" accept=".pdf" <!--style="display:none"-->>
+									<div class="input-append">
+										<a id="expand" class="btn" onclick=ssh('uploadcv','compress','expand') data-toggle="tooltip" title="Upload Resume"><img src=<?php echo base_url()."static/images/up1.png"; ?> width=50px></a>
+										<a id="compress" class="btn" onclick=shh('expand','uploadcv','compress') data-toggle="tooltip" title="Upload Resume" style=display:none><img src=<?php echo base_url()."static/images/up1.png"; ?> width=50px></a>
+										<a class="btn" data-toggle="tooltip" title="Download Resume"><img src=<?php echo base_url()."static/images/down1.png"; ?> width=50px></a>
+										<a class="btn" data-toggle="tooltip" title="Delete Resume"><img src=<?php echo base_url()."static/images/trash.png"; ?> width=50px></a>
+									</div>
+									<div id="uploadcv" style=display:none>
+										<form id="cvfrm">
+											<input id="lecv" type="file" accept=".pdf" style="display:none">
+											<div class="input-append">
+												<a class="btn btn1 top-down-margin" onclick="$('input[id=lecv]').click();">Choose File</a>
+											</div>
+											<div>
+												<a class="btn btn2">Submit</a>
+											</div>
+										</form>
+										<br><br>
+									</div>
+								</div>
+								<div>
+									<p><b>Special Feature</b></p>
+									<a href="#"><b>Download your resume in college format</b></a>
+								</div>
+							</div>
 					</div>
                                         <!-- Resume end -->
 				</div>
