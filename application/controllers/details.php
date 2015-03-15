@@ -17,7 +17,8 @@ class Details extends CI_Controller {
                 }
                 else {
                 	global $id;
-                	$id = $this->session->userdata('user')['id'];
+                	$id = $this->session->userdata('user');
+					$id = $id['id'];
                 }
 		
 	}
@@ -36,7 +37,7 @@ class Details extends CI_Controller {
                 $param = sha1(md5("updated"));
                 $value = md5(sha1("updated"));
                 
-                $array = array(sha1(md5("updated_basic")) => md5(sha1("updated_basic")),sha1(md5("updated_contact")) => md5(sha1("updated_contact")),sha1(md5("updated_academic")) => md5(sha1("updated_academic")),sha1(md5("updated_past"))=> md5(sha1("updated_past")),sha1(md5("updated_personal"))=> md5(sha1("updated_personal")),sha1(md5("updated_other"))=> md5(sha1("updated_other")),sha1(md5("deleted_photo")) => md5(sha1("deleted_photo")));
+                $array = array(sha1(md5("success_basic")) => md5(sha1("success_basic")),sha1(md5("success_contact")) => md5(sha1("success_contact")),sha1(md5("success_academic")) => md5(sha1("success_academic")),sha1(md5("success_past"))=> md5(sha1("success_past")),sha1(md5("success_personal"))=> md5(sha1("success_personal")),sha1(md5("success_other"))=> md5(sha1("success_other")),sha1(md5("deleted_photo")) => md5(sha1("deleted_photo")));
                 $updated = array();
                 session_start();
                 
@@ -67,10 +68,10 @@ class Details extends CI_Controller {
 			
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_basic"));
+				$param = sha1(md5("success_basic"));
 				
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_basic"));
+				$_SESSION[$param] = md5(sha1("success_basic"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -85,10 +86,10 @@ class Details extends CI_Controller {
 			
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_contact"));
+				$param = sha1(md5("success_contact"));
 			
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_contact"));
+				$_SESSION[$param] = md5(sha1("success_contact"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -105,10 +106,10 @@ class Details extends CI_Controller {
 				
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_academic"));
+				$param = sha1(md5("success_academic"));
 					
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_academic"));
+				$_SESSION[$param] = md5(sha1("success_academic"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -124,10 +125,10 @@ class Details extends CI_Controller {
 				
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_past"));
+				$param = sha1(md5("success_past"));
 					
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_past"));
+				$_SESSION[$param] = md5(sha1("success_past"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -143,10 +144,10 @@ class Details extends CI_Controller {
 				
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_personal"));
+				$param = sha1(md5("success_personal"));
 					
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_personal"));
+				$_SESSION[$param] = md5(sha1("success_personal"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -163,10 +164,10 @@ class Details extends CI_Controller {
 				
 			if ($validate == TRUE) {
 				$status = $this->functions->update_details($id,$details);
-				$param = sha1(md5("updated_other"));
+				$param = sha1(md5("success_other"));
 					
 				session_start();
-				$_SESSION[$param] = md5(sha1("updated_other"));
+				$_SESSION[$param] = md5(sha1("success_other"));
 				//$updated = TRUE;
 				//echo $_SESSION[$param];
 				redirect(base_url());
@@ -191,10 +192,10 @@ class Details extends CI_Controller {
 						echo "Error!";
 					}
 					$this->functions->update_photo($id,$name);
-					$param = sha1(md5("updated_image"));
+					$param = sha1(md5("success_image"));
 					
 					session_start();
-					$_SESSION[$param] = md5(sha1("updated_image"));
+					$_SESSION[$param] = md5(sha1("success_image"));
 					//$updated = TRUE;
 					//echo $_SESSION[$param];
 					redirect(base_url());
@@ -216,8 +217,8 @@ class Details extends CI_Controller {
 	
         public function delete() {
             
-            $x= $this->session->userdata('user');
-            $id = $x['id'];
+            $id= $this->session->userdata('user');
+            $id = $id['id'];
             $result = $this->functions->delete_image($id);
             session_start();
             $param = sha1(md5("deleted_photo"));
@@ -306,9 +307,9 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 				
 			$updated = array();
-                        $updated[sha1(md5("updated_basic"))] = md5(sha1("updated_basic"));
+                        $updated[sha1(md5("error_basic"))] = md5(sha1("error_basic"));
                         $updated["error_basic"] = 1;
-                        //$data[sha1(md5("updated_basic"))] = md5(sha1("updated_basic"));
+                        //$data[sha1(md5("success_basic"))] = md5(sha1("success_basic"));
 			//$data['details'] = $details;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);
@@ -364,7 +365,7 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
                        // echo "hi<br>";
 			$updated = array();
-                        $updated[sha1(md5("updated_contact"))] = md5(sha1("updated_contact"));
+                        $updated[sha1(md5("error_contact"))] = md5(sha1("error_contact"));
                         $updated["error_contact"] = 1;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);
@@ -444,7 +445,7 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 		
 			$updated = array();
-                        $updated[sha1(md5("updated_academic"))] = md5(sha1("updated_academic"));
+                        $updated[sha1(md5("error_academic"))] = md5(sha1("error_academic"));
                         $updated["error_academic"] = 1;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);
@@ -504,7 +505,7 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 		
 			$updated = array();
-                        $updated[sha1(md5("updated_past"))] = md5(sha1("updated_past"));
+                        $updated[sha1(md5("error_past"))] = md5(sha1("error_past"));
                         $updated["error_past"] = 1;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);
@@ -559,7 +560,7 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 		
 			$updated = array();
-                        $updated[sha1(md5("updated_personal"))] = md5(sha1("updated_personal"));
+                        $updated[sha1(md5("error_personal"))] = md5(sha1("error_personal"));
                         $updated["error_personal"] = 1;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);
@@ -614,7 +615,7 @@ class Details extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 		
                         $updated = array();
-                        $updated[sha1(md5("updated_other"))] = md5(sha1("updated_other"));
+                        $updated[sha1(md5("error_other"))] = md5(sha1("error_other"));
                         $updated["error_other"] = 1;
                         $data['updated'] = $updated;
 			$this->load->view('details',$data);

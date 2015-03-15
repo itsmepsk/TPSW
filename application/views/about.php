@@ -32,12 +32,12 @@
 					<h5>ECE 3<sup>rd</sup> Year</h5>
 					<ul class="social_team">
 						<li>
-							<a href="https://www.linkedin.com/in/itsmepsk">
+							<a target="_blank" href="https://www.linkedin.com/in/itsmepsk">
 							<img src = <?php echo base_url()."static/images/linkedin-icon.png"; ?>  width=100%>
 							</a>
 						</li>
 						<li>
-							<a href="https://www.facebook.com/itspsk">
+							<a target="_blank" href="https://www.facebook.com/itspsk">
 							<img src = <?php echo base_url()."static/images/facebook-icon.png"; ?>  width=100%>
 							</a>
 						</li>
@@ -52,12 +52,12 @@
 					<br>
 					<ul class="social_team">
 						<li>
-							<a href="https://www.linkedin.com/in/sagar0907">
+							<a target="_blank" href="https://www.linkedin.com/in/sagar0907">
 							<img src = <?php echo base_url()."static/images/linkedin-icon.png"; ?>  width=100%>
 							</a>
 						</li>
 						<li>
-							<a href="https://www.facebook.com/sagar.jain.564">
+							<a target="_blank" href="https://www.facebook.com/sagar.jain.564">
 							<img src = <?php echo base_url()."static/images/facebook-icon.png"; ?>  width=100%>
 							</a>
 						</li>
@@ -72,12 +72,12 @@
 					<br>
 					<ul class="social_team">
 						<li>
-							<a href="https://www.linkedin.com/in/gcnit">
+							<a target="_blank" href="https://www.linkedin.com/in/gcnit">
 							<img src = <?php echo base_url()."static/images/linkedin-icon.png"; ?>  width=100%>
 							</a>
 						</li>
 						<li>
-							<a href="https://www.facebook.com/aarav93">
+							<a target="_blank" href="https://www.facebook.com/aarav93">
 							<img src = <?php echo base_url()."static/images/facebook-icon.png"; ?>  width=100%>
 							</a>
 						</li>
@@ -92,12 +92,12 @@
 					<br>
 					<ul class="social_team">
 						<li>
-							<a href="https://www.linkedin.com">
+							<a target="_blank" href="https://www.linkedin.com">
 							<img src = <?php echo base_url()."static/images/linkedin-icon.png"; ?>  width=100%>
 							</a>
 						</li>
 						<li>
-							<a href="https://www.facebook.com/avinish.chandra">
+							<a target="_blank" href="https://www.facebook.com/avinish.chandra">
 							<img src = <?php echo base_url()."static/images/facebook-icon.png"; ?>  width=100%>
 							</a>
 						</li>

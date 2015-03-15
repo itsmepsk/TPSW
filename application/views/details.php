@@ -10,7 +10,7 @@
 		<link href='<?php echo base_url();?>static/css/bootstrap.css' rel="stylesheet" type="text/css">
 		<link href='<?php echo base_url();?>static/css/custom.css' rel="stylesheet" type="text/css">
 		<script src='<?php echo base_url();?>static/js/respond.js'></script>
-                <script src='<?php echo base_url();?>static/js/profile.js'></script>
+        <script src='<?php echo base_url();?>static/js/profile.js'></script>
 	</head>
         <?php //var_dump($updated); ?>
         <?php //echo "Details.<br>"; ?>
@@ -55,7 +55,7 @@
 				'id' => 'name',
 				'class' => 'form-control',
 				'required' => '',
-				'value' => $f_data['name'] 
+				'value' => ucwords(strtolower($f_data['name'])) 
 		);
 		
 		$f_branch = array (
@@ -76,15 +76,14 @@
 		);
 		
 		$f_current_sem = array (
-				'0' => '--Select--',
-				'1' => '1st',
-				'2' => '2nd',
-				'3' => '3rd',
-				'4' => '4th',
-				'5' => '5th',
-				'6' => '6th',
-				'7' => '7th',
-				'8' => '8th'
+				'0' => '1st',
+				'1' => '2nd',
+				'2' => '3rd',
+				'3' => '4th',
+				'4' => '5th',
+				'5' => '6th',
+				'6' => '7th',
+				'7' => '8th'
 		);
 		
 		$f_sex = array (
@@ -103,7 +102,6 @@
 		);
 		
 		$f_category = array (
-				'0' => '--Select--',
 				'gen' => 'General',
 				'obc' => 'OBC',
 				'sc' => 'SC',
@@ -446,7 +444,6 @@
 		);
 		
 		$f_disability = array (
-				'0' => '--Select--',
 				'yes' => 'Yes',
 				'no' => 'No' 
 		);
@@ -647,16 +644,16 @@
 						<div id="collapseOne" class="panel-collapse collapse 
                                                      <?php
                                                      //$updated['updated_resume'] = 1;
-                                                        if (isset($updated[sha1(md5('updated_basic'))]) || empty($updated)) {
+                                                        if (isset($updated[sha1(md5('success_basic'))]) || isset($updated["error_basic"]) || empty($updated)) {
                                                             echo "in";
                                                         }
                                                      ?>
                                                      " role="tabpanel" aria-labelledby="headingOne">
 							<div class="panel-body saman">
                                                                 <?php
-                                                                    if(isset($updated[sha1(md5("updated_basic"))])) {
+                                                                    if(isset($updated[sha1(md5("success_basic"))])) {
                                                                     echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                         <p>Updated Successfully!</p>
                                                                     </div>';
                                                                     }
@@ -680,7 +677,7 @@
 									<div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Name:</label>
-                                                                                        <div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_data['name']; ?></div>
+                                                                                        <div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo ucwords(strtolower($f_data['name'])); ?></div>
 										</div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Registration No:</label>
@@ -688,11 +685,23 @@
 										</div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Current Semester:</label>
-											<div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_current_sem[$f_data['current_sem']]; ?></div>
+											<div class="col-lg-9 col-md-9 col-sm-9 entry">
+												<?php 
+													if (isset($f_current_sem[$f_data['current_sem']])) {
+														echo $f_current_sem[$f_data['current_sem']]; 
+													}
+													?>
+											</div>
 										</div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Sex:</label>
-											<div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_sex[$f_data['sex']]; ?></div>
+											<div class="col-lg-9 col-md-9 col-sm-9 entry">
+												<?php 
+													if(isset($f_sex[$f_data['sex']])) {
+														echo $f_sex[$f_data['sex']];
+													} 
+												?>
+											</div>
 										</div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Date of Birth:</label>
@@ -700,7 +709,13 @@
 										</div>
 										<div class="row">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Category:</label>
-											<div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_category[$f_data['category']]; ?></div>
+											<div class="col-lg-9 col-md-9 col-sm-9 entry">
+												<?php 
+													if (isset( $f_category[$f_data['category']])) {
+														echo $f_category[$f_data['category']]; 
+													}
+												?>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -720,7 +735,7 @@
 									<?php echo form_open(base_url().'details/submit',$class); ?>
 										<div class="form-group">
 											<label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Name:</label>
-											<div class="col-lg-8"><?php echo form_input($f_name); ?></div>
+											<div class="col-lg-8"><?php echo ucwords(strtolower(form_input($f_name))); ?></div>
 										</div>
                                                                                 <span style='color: red;text-align: center'> 
                                                                                     <b><?php echo form_error('name','<div class="error">', '</div>')?></b><br>
@@ -782,16 +797,16 @@
                                             </a>
                                             <div id="collapseTwo" class="panel-collapse collapse
                                                  <?php
-                                                    if (isset($updated[sha1(md5('updated_contact'))])) {
+                                                    if (isset($updated[sha1(md5('success_contact'))]) || isset($updated['error_contact'])) {
                                                         echo "in";
                                                     }
                                                  ?>
                                                 " role="tabpanel" aria-labelledby="headingTwo">
                                                 <div class="panel-body saman">
                                                     <?php
-                                                        if(isset($updated[sha1(md5("updated_contact"))])) {
+                                                        if(isset($updated[sha1(md5("success_contact"))])) {
                                                             echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                 <p>Updated Successfully!</p>
                                                             </div>';
                                                         }
@@ -918,16 +933,16 @@
                                             </a>
                                             <div id="collapseThree" class="panel-collapse collapse
                                                  <?php
-                                                    if (isset($updated[sha1(md5('updated_academic'))])) {
+                                                    if (isset($updated[sha1(md5('success_academic'))]) || isset($updated['error_academic'])) {
                                                         echo "in";
                                                     }
                                                  ?>
                                                  " role="tabpanel" aria-labelledby="headingThree">
                                                 <div class="panel-body saman">
                                                     <?php
-                                                        if(isset($updated[sha1(md5("updated_academic"))])) {
+                                                        if(isset($updated[sha1(md5("success_academic"))])) {
                                                             echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                 <p>Updated Successfully!</p>
                                                             </div>';
                                                         }
@@ -987,7 +1002,7 @@
                                                                     <div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_data['cgpa']; ?></div>
                                                             </div>
                                                             <div class="row">
-                                                                    <label class = "control-label col-lg-3 col-md-3 col-sm-3 namkaran">Supplies till <?php echo $f_current_sem[$f_data['current_sem']]; ?> Sem:</label>
+                                                                    <label class = "control-label col-lg-3 col-md-3 col-sm-3 namkaran">Supplies till <?php if (isset($f_current_sem[$f_data['current_sem']])){echo $f_current_sem[$f_data['current_sem']];}else {echo "current";} ?> Sem:</label>
                                                                     <div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_data['supplies']; ?></div>
                                                             </div>
                                                             <div class="row">
@@ -1075,7 +1090,7 @@
                                                                         <b><?php echo form_error('cgpa','<div class="error">', '</div>')?></b><br>
                                                                     </span>
                                                                     <div class="form-group">
-                                                                            <label class = "control-label col-lg-3 col-md-3 col-sm-3 namkaran">Supplies till <?php echo $f_current_sem[$f_data['current_sem']]; ?> Sem:</label>
+                                                                            <label class = "control-label col-lg-3 col-md-3 col-sm-3 namkaran">Supplies till <?php if (isset($f_current_sem[$f_data['current_sem']])){echo $f_current_sem[$f_data['current_sem']];}else {echo "current";} ?> Sem:</label>
                                                                             <div class="col-lg-8"><?php echo form_input($f_supplies); ?></div>
                                                                     </div>
                                                                     <span style='color: red;text-align: center'> 
@@ -1110,16 +1125,16 @@
                                             </a>
                                             <div id="collapseFour" class="panel-collapse collapse
                                                  <?php
-                                                    if (isset($updated[sha1(md5('updated_past'))])) {
+                                                    if (isset($updated[sha1(md5('success_past'))]) || isset($updated['error_past'])) {
                                                         echo "in";
                                                     }
                                                  ?>
                                                  " role="tabpanel" aria-labelledby="headingFour">
                                                 <div class="panel-body saman">
                                                     <?php
-                                                        if(isset($updated[sha1(md5("updated_past"))])) {
+                                                        if(isset($updated[sha1(md5("success_past"))])) {
                                                             echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                 <p>Updated Successfully!</p>
                                                             </div>';
                                                         }
@@ -1334,16 +1349,16 @@
                                             </a>
                                             <div id="collapseFive" class="panel-collapse collapse
                                                  <?php
-                                                    if (isset($updated[sha1(md5('updated_personal'))])) {
+                                                    if (isset($updated[sha1(md5('success_personal'))]) || isset($updated['error_personal'])) {
                                                         echo "in";
                                                     }
                                                  ?>
                                                  " role="tabpanel" aria-labelledby="headingFive">
                                                     <div class="panel-body saman">
                                                         <?php
-                                                            if(isset($updated[sha1(md5("updated_personal"))])) {
+                                                            if(isset($updated[sha1(md5("success_personal"))])) {
                                                                 echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                     <p>Updated Successfully!</p>
                                                                 </div>';
                                                             }
@@ -1392,7 +1407,13 @@
                                                                     </div>
                                                                     <div class="row">
                                                                             <label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Disability:</label>
-                                                                            <div class="col-lg-9 col-md-9 col-sm-9 entry"><?php echo $f_disability[$f_data['disability']]; ?></div>
+                                                                            <div class="col-lg-9 col-md-9 col-sm-9 entry">
+                                                                            	<?php 
+                                                                            		if(isset($f_disability[$f_data['disability']])) {
+                                                                            			echo $f_disability[$f_data['disability']]; 
+                                                                            		}
+                                                                            	?>
+                                                                            </div>
                                                                     </div>
                                                                     <script>showdisability($f_data['disability'])</script>
                                                                     <div id="disabilityyes" style='display: none'>
@@ -1508,7 +1529,7 @@
                                             </a>
 						<div id="collapseSix" class="panel-collapse collapse
                                                      <?php
-                                                        if (isset($updated[sha1(md5('updated_other'))])) {
+                                                        if (isset($updated[sha1(md5('success_other'))]) || isset($updated['error_other'])) {
                                                             echo "in";
                                                         }
                                                      ?>
@@ -1517,7 +1538,7 @@
                                                             <?php
                                                                 if(isset($updated[sha1(md5("updated_other"))])) {
                                                                     echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
-                                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                                         <p>Updated Successfully!</p>
                                                                     </div>';
                                                                 }
@@ -1566,8 +1587,8 @@
                                                                             </div>
                                                                     </div>
                                                                 </div>
-                                                            <!-- Personal Info text version end -->
-                                                            <!-- Personal Info form start -->
+                                                            <!-- Other Info text version end -->
+                                                            <!-- Other Info form start -->
                                                                     <div id="comment6" 
                                                                         <?php
                                                                             if (isset($updated["error_other"])) {
@@ -1628,7 +1649,7 @@
                                                                             </div>
                                                                             </form>
                                                                     </div>
-                                                            <!-- Personal Info form end -->
+                                                            <!-- Other Info form end -->
 							</div>
 						</div>
 					</div>
