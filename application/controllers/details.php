@@ -174,7 +174,7 @@ class Details extends CI_Controller {
 			}
 				
 		}
-                else
+        else
 		if (isset($_POST['update_image'])) {
 			
 			$details = $this->input->post();
@@ -186,8 +186,8 @@ class Details extends CI_Controller {
 				if ( $_FILES['display_image']['name'] != '') {
 					
 					$name = (md5(sha1($id))).".jpg";
-					echo $name;
-					$st = copy( $_FILES['display_image']['tmp_name'],"static/images/".$name );
+					//echo $name;
+					$st = copy( $_FILES['display_image']['tmp_name'],"static/images/profiles/".$name );
 					if (!$st) {
 						echo "Error!";
 					}

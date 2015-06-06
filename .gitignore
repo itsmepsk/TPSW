@@ -1,1 +1,16 @@
 /nbproject/private/
+/.buildpath
+/.settings
+/html2pdf
+/user_guide
+/.buildpath
+/.project
+/*.pdf
+/*.sql
+/bugs.txt
+/*.zip
+/license.txt
+/lightbox.php
+/encrypt.php
+/email.php
+/static/images/profiles/*

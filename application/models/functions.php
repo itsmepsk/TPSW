@@ -95,5 +95,27 @@ class Functions extends CI_Model {
     	}
                 
     }
+    
+    public function check_token($token) {
+    	
+    	$query = $this->db->query("SELECT roll_no,id FROM token WHERE token = '$token'");
+    	$result = $query->result();
+    	//var_dump($result);
+    	return $result[0];
+    	//$query = $this->db->query("SELECT * FROM user_data WHERE roll_no = '$roll'");
+    	
+    }
+    
+    public function reset_password($uid, $password) {
+    	
+    	$details = array(
+    			'password'	=>	$password
+    	);
+    	//echo $uid;
+    	$result = $this->db->update("login_details",$details,"encrypt_roll = '$uid'");
+    	
+    	return $result;
+    	
+    }
 	
 }

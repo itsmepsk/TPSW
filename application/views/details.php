@@ -554,6 +554,7 @@
 		
 		<!-- Header Start -->
 		<div>
+
 			<h1 class="text-center database">
 				<a href=<?php echo base_url(); ?> class="datab"> Database </a>
 				<small>
@@ -579,6 +580,7 @@
 					</span>
 				</small>
 			</h1>
+
 		</div>
 		<!-- Header End-->
 		
@@ -597,7 +599,7 @@
 							$src = base_url()."static/images/default.png?".time();
 						}
 						else {
-							$src = base_url()."static/images/".$f_data['image']."?".time();
+							$src = base_url()."static/images/profiles/".$f_data['image']."?".time();
 						}
 					?>
 					<img id="pic" src= "<?php echo $src; ?>"  width=100%>
@@ -629,7 +631,7 @@
 								$src = base_url()."static/images/default.png";
 							}
 							else {
-								$src = base_url()."static/images/".$f_data['image']."?".time();
+								$src = base_url()."static/images/profiles/".$f_data['image']."?".time();
 							}
 						?>
 						<br>
