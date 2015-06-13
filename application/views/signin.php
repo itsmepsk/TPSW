@@ -115,7 +115,7 @@
 						</p>
 					</div>
 					<?php echo form_close(); ?>
-					<?php echo form_open(base_url().'login/reset'); ?>
+					<?php echo form_open(base_url().'forgot.php'); ?>
 					<div>
 						<span id="comment"
 							<?php if (!isset($reset_error) && !isset($reset_success)) {

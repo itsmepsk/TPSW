@@ -17,8 +17,8 @@ class Email2 extends CI_Controller {
 
         public function index() {
             
-            $this->email->from('prathamesh.kakade18@gmail.com','Prathamesh Kakade');
-            $this->email->to('prathamesh.kakade18@gmail.com','Prathamesh Kakade');
+            $this->email->from('email','Prathamesh Kakade');
+            $this->email->to('email','Prathamesh Kakade');
             $this->email->subject('Email Test');
             $this->email->message('Testing the email class.');
             $this->email->send();

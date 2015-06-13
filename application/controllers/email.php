@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Email extends CI_Controller {
 	
@@ -35,17 +35,20 @@ class Email extends CI_Controller {
 		$val = array_combine($roll, $email);
 		var_dump($val);
 		
-		$subject = getSubject();
-		$headers = getHeaders();
+		$subject = $this->getSubject();
+		$headers = $this->getHeaders();
 		foreach ($val as $roll=>$email) {
-			$token = generateRandomString().$roll.$email;
-			$message = getMessage($token);
-			$sendEmail = mail($rec, $subject, $message, $headers);
+			$token = $this->generateRandomString().$roll.$email;
+			$message = $this->getMessage($token);
+			$sendEmail = mail($email, $subject, $message, $headers);
 			
 			if ($sendEmail) {
 				if ($this->emailFunctions->insertToken($roll, $token)) {
 					echo "Success!";
 				}
+			}
+			else {
+				print_r(error_get_last());
 			}
 			
 		}

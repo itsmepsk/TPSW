@@ -24,6 +24,8 @@ class EmailFunctions extends CI_Model {
 		$this->db->update("token",array('token'=>$token));
 		$this->db->where('roll_no',$roll_no);
 		
+		$this->db->trans_status();
+		
 	}
 	
 	

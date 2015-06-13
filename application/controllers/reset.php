@@ -34,17 +34,18 @@
             		else {
             		
             			$roll = $this->check_token($token);
-            			if ($roll != NULL) {
+            			var_dump($roll);
+//             			if ($roll != NULL) {
             				
-            				$data['uid'] = sha1(md5($roll->roll_no));
-            				$this->load->view('reset',$data);
+//             				$data['uid'] = sha1(md5($roll->roll_no));
+//             				$this->load->view('reset',$data);
             				
-            			}
-            			else {
+//             			}
+//             			else {
             				
-            				redirect(base_url());
+//             				redirect(base_url());
             				
-            			}
+//             			}
             			
             		}
             		

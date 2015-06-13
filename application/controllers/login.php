@@ -76,6 +76,7 @@ class Login extends CI_Controller {
 		}
 		
 	}
+
 	
 	public function validate_email() {
 		

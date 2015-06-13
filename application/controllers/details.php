@@ -135,7 +135,7 @@ class Details extends CI_Controller {
 			}
 				
 		}
-                else
+        else
 		if (isset($_POST['update_personal'])) {
 
 			$details = $_POST;
@@ -154,7 +154,7 @@ class Details extends CI_Controller {
 			}
 				
 		}
-                else
+		else
 		if (isset($_POST['update_other'])) {
 				
 			$details = $this->input->post();
@@ -385,47 +385,47 @@ class Details extends CI_Controller {
 				array(
 						'field'		=>		'sgpa_1',
 						'label'		=>		'1st Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_2',
 						'label'		=>		'2nd Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_3',
 						'label'		=>		'3rd Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_4',
 						'label'		=>		'4th Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_5',
 						'label'		=>		'5th Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_6',
 						'label'		=>		'6th Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_7',
 						'label'		=>		'7th Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'sgpa_8',
 						'label'		=>		'8th Semester SGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'cgpa',
 						'label'		=>		'CGPA',
-						'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+						'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 				),
 				array(
 						'field'		=>		'supplies',
@@ -635,6 +635,17 @@ class Details extends CI_Controller {
 		
 	}
 	
+	public function less_equal($data) {
+		
+		if ($data <= 10) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+			
+	}
+	
     public function validate_fields($details) {
 		
 		$config = array(
@@ -681,47 +692,47 @@ class Details extends CI_Controller {
 			array(
 				'field'		=>		'sgpa_1',
 				'label'		=>		'1st Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_2',
 				'label'		=>		'2nd Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_3',
 				'label'		=>		'3rd Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_4',
 				'label'		=>		'4th Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_5',
 				'label'		=>		'5th Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_6',
 				'label'		=>		'6th Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_7',
 				'label'		=>		'7th Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'sgpa_8',
 				'label'		=>		'8th Semester SGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'cgpa',
 				'label'		=>		'CGPA',
-				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|less_than[10]'
+				'rules'		=>		'required|trim|xss_clean|decimal|greater_than[0]|callback_less_equal'
 			),
 			array(
 				'field'		=>		'supplies',
