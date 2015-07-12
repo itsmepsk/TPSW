@@ -1,0 +1,135 @@
+<div class="acompany" id="change0" style="display:none">
+    <h3 class="text-center bluebox">Company</h3>
+    <div class="comp_details">
+        <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label question" for="name">Name:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="name" placeholder="Enter company name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="date">Date:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="date1" placeholder="Enter Date">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="ctc">CTC:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="ctc1" placeholder="Enter Package">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="location">Location:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="location1" placeholder="Location">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="url">URL:</label>
+            <div class="answerfill">
+                <input type="url" class="form-control" id="url1" placeholder="Enter Link">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="deadline">Deadline:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="deadline1" placeholder="Enter Deadline">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="branches">Open For:</label>
+            <div class="answerfill">
+                <div class="row">
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="bt1" value="option1"> BT
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="che1" value="option2"> CHE
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ce1" value="option3"> CE
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="cs1" value="option1"> CS
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ee1" value="option2"> EE
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ec1" value="option3"> EC
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="it1" value="option1"> IT
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="me1" value="option2"> ME
+                        </label>
+                    </div>
+                    <div style="width:33.33%;float:left">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="mme1" value="option3"> MME
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="criteria">Criteria:</label>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="cgpa1">CGPA:</label>
+            <div class="answerfill">
+                <input type="number" class="form-control" id="cgpa1" placeholder="Minimum CGPA">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="12th1">12<sup>th</sup> %:</label>
+            <div class="answerfill">
+                <input type="number" class="form-control" id="cgpa1" placeholder="Min 12th %">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="10th1">10<sup>th</sup> %:</label>
+            <div class="answerfill">
+                <input type="number" class="form-control" id="10th1" placeholder="Min 10th %">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label question" for="details">Details:</label>
+            <div class="answerfill">
+                <input type="text" class="form-control" id="details1" placeholder="Details">
+            </div>
+        </div>
+        <div class="row">
+            <div class="question">
+                <br>
+            </div>
+            <div class="answerfill">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <input type="button" onclick=show('com0','change0') value="Cancel" class="btn btn-default right0"></input>
+        </div>
+    </div>
+</form>
+</div>
+</div>

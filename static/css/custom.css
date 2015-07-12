@@ -64,7 +64,7 @@ body
 	position:float;
 	width:100%;
 	padding-right:20px;
-	padding-left:20px;	
+	padding-left:20px;
 	padding-top:20px;
 	padding-left:20px;
 }
@@ -94,7 +94,7 @@ body
 {
 	width:75%;
 	float:right;
-	padding-top:15px;
+	padding-top:7px;
 }
 }
 @media all and (max-width:499px)
@@ -119,7 +119,7 @@ body
 .flright
 {
 	float:right;
-	padding-top:7px;
+	padding-top:2px;
 	padding-right:5px;
 }
 .absright
@@ -154,7 +154,7 @@ body
 {
 	padding-left:15px;
 }
-.box_style_3 
+.box_style_3
 {
 	position: relative;
 	margin: 0 0 2em 0;
@@ -307,83 +307,83 @@ margin-top:0;
 }*/
 .acompany
 {
-	background-color:#fff;
-	margin-bottom:40px;
+    background-color:#fff;
+    margin-bottom:40px;
 }
 .comp_details
 {
-	padding-bottom:20px;
-	padding-left:10px;
-	padding-right:10px;
-	padding-top:10px;
+    padding-bottom:20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
 }
 .row
 {
-	margin-right:0;
-	margin-left:0;
+    margin-right:0;
+    margin-left:0;
 }
 .question
 {
-	width:22%;
-	float:left;
-	text-align:right;
-	vertical-align:baseline;
+    width:22%;
+    float:left;
+    text-align:right;
+    vertical-align:baseline;
 }
 .answer
 {
-	width:78%;
-	float:right;
-	padding-left:10px;
+    width:78%;
+    float:right;
+    padding-left:10px;
 }
 .answerfill
 {
-	width:70%;
-	float:left;
-	padding-left:10px;
+    width:70%;
+    float:left;
+    padding-left:10px;
 }
 .gap
 {
-	padding-bottom:10px;
+    padding-bottom:10px;
 }
 .links
 {
-	cursor:poiner;
+    cursor:poiner;
 }
 .control-label
 {
-	padding-top:7px;
+    padding-top:7px;
 }
 .conditions
 {
-	margin-bottom:15px;
+    margin-bottom:15px;
 }
 .form-horizontal .form-group
 {
-	margin-left:0;
-	margin-right:0;
+    margin-left:0;
+    margin-right:0;
 }
 a
 {
-	cursor:pointer;
+    cursor:pointer;
 }
 @media (max-width: 768px)
 {
-.containermob
-{
-	padding-left:0;
-	padding-right:0;
-}
+    .containermob
+    {
+        padding-left:0;
+        padding-right:0;
+    }
 }
 .normalicon
 {
-	font-size:20px!important;
-	color:#3e9cca!important;
+    font-size:20px!important;
+    color:#3e9cca!important;
 }
 .badge
 {
-	position:absolute;
-	left:15px;
-	vertical-align:top;
-	background-color:#aa0000;
-	padding: 2px 5px;
+    position:absolute;
+    left:15px;
+    vertical-align:top;
+    background-color:#aa0000;
+    padding: 2px 5px;
 }

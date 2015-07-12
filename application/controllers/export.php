@@ -9,6 +9,7 @@ class Export extends CI_Controller {
 		if (!$logged_in) {
 			redirect(base_url());
 		}
+        $this->load->model('exportfunctions');
 		
 	}
 	
@@ -25,44 +26,91 @@ class Export extends CI_Controller {
 		
 		if (isset($_POST['export_submit'])) {
 			
-			$query = "SELECT * FROM details WHERE ";
-			
-			if ($this->input->post('branch')) {
+			$baseQuery = "SELECT * FROM details2 WHERE ";
+            $query = "";
+            var_dump($_POST);
+
+            if ($this->input->post('branch') && $this->input->post('branch') != 0) {
 				
 				$branch = $this->input->post('branch');
 				$query.= "branch = '$branch' ";
 				
 			}
 			if ($this->input->post('cgpa')) {
-			
+
+                if ($query !== "") {
+
+                    $query.= "AND ";
+
+                }
+
 				$cgpa= $this->input->post('cgpa');
-				$query.= "AND cgpa > '$cgpa' ";
+				$query.= "cgpa > '$cgpa' ";
 			
 			}
-			if ($this->input->post('current_suppli')) {
-			
+			if ($this->input->post('active_supplies')) {
+
 				$active_supplies = $this->input->post('active_supplies');
-				if ($active_supplies == 'no') {
-					
-					$query.= "AND active_supplies = '0' ";
+				if (trim($active_supplies ) == 'no') {
+
+                    if ($query !== "") {
+
+                        $query.= "AND ";
+
+                    }
+
+					$query.= "active_supplies = '0' ";
 							
 				}
 			}
 			if ($this->input->post('12_percent')) {
 			
 				$twelve_percent = $this->input->post('12_percent');
-				$query.= "AND 12_percent > '$twelve_percent' ";
+
+                if ($query !== "") {
+
+                    $query.= "AND ";
+
+                }
+
+				$query.= "twelve_percent > '$twelve_percent' ";
 			
 			}
 			
 			if ($this->input->post('10_percent')) {
 			
 				$ten_percent = $this->input->post('10_percent');
-				$query.= "AND 10_percent > '$ten_percent' ";
+
+                if ($query !== "") {
+
+                    $query.= "AND ";
+
+                }
+
+				$query.= "ten_percent > '$ten_percent' ";
 			
 			}
 			
-			echo $query;
+//			echo $query;
+            if ($query != "") {
+
+                $query = $baseQuery.$query;
+
+            }
+            else {
+
+                $query = "SELECT * FROM details2";
+
+            }
+            echo $query."<br>";
+            $result = $this->get_data($query);
+            $counter = 0;
+            foreach ($result as $key) {
+                echo $key->name . " : " . $key->cgpa. " : " . $key->twelve_percent  . " : " . $key->active_supplies ."<br>";
+                $counter++;
+            }
+            echo $counter;
+//            var_dump($result);
 			
 		}
 		else {
@@ -71,6 +119,12 @@ class Export extends CI_Controller {
 			
 		}
 	}
+
+    public function get_data($query) {
+
+        return $this->exportfunctions->export_details($query);
+
+    }
 	
 		
 }

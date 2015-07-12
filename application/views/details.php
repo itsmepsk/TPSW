@@ -767,7 +767,7 @@ $class = array(
                             <div class="form-group">
                                 <label class="control-label col-lg-3 col-md-3 col-sm-3 namkaran">Name:</label>
 
-                                <div class="col-lg-8"><?php echo ucwords(strtolower(form_input($f_name))); ?></div>
+                                <div class="col-lg-8"><?php echo ucwords(form_input($f_name)); ?></div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 entry" id="name_error"
                                      style='color: red; display: none'><b>Invalid Name </b></div>
                             </div>
