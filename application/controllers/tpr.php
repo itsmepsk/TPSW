@@ -12,15 +12,40 @@ class Tpr extends CI_Controller {
     public function index() {
 
         $data['details'] = $this->get_companies_data();
-//        var_dump($data['details']);
         $this->load->view("companies_admin", $data);
+
+    }
+
+    public function get_branches($id) {
+
+        return $this->companiesfunctions->get_branches($id);
 
     }
 
     public function get_companies_data() {
 
-        return $this->companiesfunctions->get_companies_data();
+        $data =  $this->companiesfunctions->get_companies_data();
+//        var_dump($data);
+//        return $data;
+        foreach($data as $company) {
 
+            $id = $company->hashed_id;
+            $branches = $this->get_branches($id);
+
+            $string = "";
+
+            foreach($branches as $branch) {
+
+                $string.= $branch->branch;
+                $string.=" ";
+
+            }
+
+            $company->open_branches = $string;
+
+        }
+
+        return $data;
     }
 
     public function get_notifications() {
@@ -29,11 +54,69 @@ class Tpr extends CI_Controller {
 
     }
 
-    public function submit() {
+    public function delete_company() {
+
+        if (isset($_POST['delete_company'])) {
+
+//            var_dump($_POST);
+            unset($_POST['delete_company']);
+
+            if ($this->check_company_id($_POST)) {
+
+                $delete_open_for = $this->companiesfunctions->delete_branches($_POST['hashed_id']);
+                if ($delete_open_for) {
+
+                    $delete_company = $this->companiesfunctions->delete_company($_POST['hashed_id']);
+
+                }
+
+                if ($delete_company) {
+
+                    $count = $this->companiesfunctions->get_companies_count();
+                    $count->value--;
+                    $this->companiesfunctions->update_config("companies_count", $count);
+                    $details = $this->get_companies_data();
+                    $details['success'] = true;
+                    $details['success_delete'] = true;
+                    $data['details'] = $details;
+                    $this->load->view('companies_admin', $data);
+
+                }
+                else {
+
+                    $details = $this->get_companies_data();
+                    $details['success'] = false;
+                    $details['success_delete'] = false;
+                    $data['details'] = $details;
+                    $this->load->view('companies_admin', $data);
+
+                }
+
+            }
+            else {
+
+                $details = $this->get_companies_data();
+                $details['success'] = false;
+                $details['success_delete'] = false;
+                $data['details'] = $details;
+                $this->load->view('companies_admin', $data);
+
+            }
+
+        }
+        else {
+
+            redirect(base_url()."tpr");
+
+        }
+
+    }
+
+    public function submit_company() {
 
         if (isset($_POST['new_company'])) {
 //        var_dump($_POST);
-            $valid = $this->validate_fields();
+            $valid = $this->validate_company_fields();
 
             if ($valid) {
 
@@ -44,14 +127,15 @@ class Tpr extends CI_Controller {
 
         }
         else
-        if (isset($_POST['update'])) {
+        if (isset($_POST['update_company'])) {
 
             $valid = $this->validate_fields();
 
             if ($valid) {
 
-                unset($_POST['update']);
-                $data = $this->process($_POST);
+                unset($_POST['update_company']);
+                $this->companiesfunctions->delete_branches($_POST['hashed_id']);
+                $data = $this->process_company($_POST);
                 $this->update($data);
 
             }
@@ -60,7 +144,7 @@ class Tpr extends CI_Controller {
         }
         else {
 
-            redirect(base_url());
+            redirect(base_url()."tpr");
 
         }
 
@@ -70,22 +154,33 @@ class Tpr extends CI_Controller {
 
         $check = $this->check_company_exists($data);
         if ($check == null) {
-            $id = $this->companiesfunctions->get_companies_count();
+            $id = $this->companiesfunctions->get_companies_index();
+            $count = $this->companiesfunctions->get_companies_count();
             $id = (int)$id->value;
-            $id = $id + 1;
+            $count = (int)$count->value;
             $hashed_id = sha1(md5($id));
             $data['hashed_id'] = $hashed_id;
-            $data = $this->process($data);
+            $data = $this->process_company($data);
             $result = $this->companiesfunctions->add_company($data);
             if ($result) {
                 $id = array(
-                    'value' => $id
+                    'value' => $id+1
                 );
-                $this->companiesfunctions->update_config("companies_count", $id);
+                $count = array(
+                    'value' => $count+1
+                );
+                $this->companiesfunctions->update_config("companies_count", $count);
+                $this->companiesfunctions->update_config("companies_index", $id);
                 unset($data);
                 $details = $this->get_companies_data();
-                $details['success_add'] == true;
+                $details['success'] = true;
+                $details['success_add_company'] = true;
+//                var_dump($details);
+                $flag = ['success_add_company'  =>  true];
+//                $flag['success_add'] == true;
                 $data['details'] = $details;
+                $data['flag'] = $flag;
+//                var_dump($data);
                 $this->load->view("companies_admin", $data);
             }
         }
@@ -108,25 +203,30 @@ class Tpr extends CI_Controller {
 
     }
 
-    private function process ($data) {
+    public function check_company_id ($data) {
+
+        $id = $data['hashed_id'];
+        return ($this->companiesfunctions->check_company_id($id));
+//        die;
+
+    }
+
+    private function process_company ($data) {
 
         $processed_data = new stdClass();
-
+        $branch = [];
+        $branch['hashed_id'] = $data['hashed_id'];
         foreach ($data as $key=>$value) {
 
             if ($key == "open_branches") {
 
-                $string = "";
-
                 foreach ($value as $a=>$b) {
-                    if (!empty($string)) {
-                        $string = $string.",";
-                    }
-                    $string = $string.trim($b);
+
+                    $branch['branch'] = $b;
+                    $this->companiesfunctions->add_branch($branch);
+                    unset($data['open_branches']);
 
                 }
-
-                $processed_data->$key = trim($string);
 
             }
             else {
@@ -136,7 +236,6 @@ class Tpr extends CI_Controller {
             }
 
         }
-
         return $processed_data;
 
     }
@@ -150,7 +249,7 @@ class Tpr extends CI_Controller {
             unset($data);
             $details = $this->get_companies_data();
             $details['success'] = true;
-            $details['success_id'] = $success_id;
+            $details['success_id_company'] = $success_id;
             $data['details'] = $details;
 //            var_dump($details);
             $this->load->view("companies_admin",$data);
@@ -159,7 +258,7 @@ class Tpr extends CI_Controller {
 
     }
 
-    public function validate_fields() {
+    public function validate_company_fields() {
 
         $config = array (
             array(
@@ -170,47 +269,47 @@ class Tpr extends CI_Controller {
             array(
                 'field'		=>		'ctc',
                 'label'		=>		'CTC',
-                'rules'		=>		'required|trim|xss_clean'
+                'rules'		=>		'trim|xss_clean'
             ),
             array(
                 'field'		=>		'company_website',
                 'label'		=>		'Company Website',
-                'rules'		=>		'required|trim|xss_clean'
+                'rules'		=>		'trim|xss_clean'
             ),
             array(
                 'field'		=>		'min_cgpa',
                 'label'		=>		'Minimum CGPA',
-                'rules'		=>		'required|trim|xss_clean|callback_less_equal'
+                'rules'		=>		'trim|xss_clean|callback_less_equal'
             ),
             array(
                 'field'		=>		'location',
                 'label'		=>		'Location',
-                'rules'		=>		'required|trim|xss_clean'
+                'rules'		=>		'trim|xss_clean'
             ),
             array(
                 'field'		=>		'date_of_placement',
                 'label'		=>		'Date of Placement',
-                'rules'		=>		'required|trim|xss_clean'
+                'rules'		=>		'trim|xss_clean'
             ),
             array(
                 'field'		=>		'deadline',
                 'label'		=>		'Deadline',
-                'rules'		=>		'required|trim|xss_clean|date'
+                'rules'		=>		'trim|xss_clean|date'
             ),
             array(
                 'field'		=>		'open_branches',
                 'label'		=>		'Open Branches',
-                'rules'		=>		'required'
+                'rules'		=>		''
             ),
             array(
                 'field'		=>		'min_tenth',
                 'label'		=>		'Minimum 10th Marks',
-                'rules'		=>		'required|trim|xss_clean|integer|greater_than[0]|less_than[101]'
+                'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|less_than[100]'
             ),
             array(
                 'field'		=>		'min_twelve',
                 'label'		=>		'Minimum 12th Marks',
-                'rules'		=>		'required|trim|xss_clean|integer|greater_than[0]|less_than[101]'
+                'rules'		=>		'trim|xss_clean|decimal|greater_than[0]|less_than[100]'
             )
 
         );
@@ -222,12 +321,12 @@ class Tpr extends CI_Controller {
 
                 $success_id = $_POST['hashed_id'];
                 $details['success'] = false;
-                $details['success_id'] = $success_id;
+                $details['success_id_company'] = $success_id;
 
             }
             else {
 
-                $details['success_add'] = false;
+                $details['success_add_company'] = false;
 
             }
             $data['details'] = $details;

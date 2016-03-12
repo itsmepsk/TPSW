@@ -19,6 +19,9 @@
 		</script>
 	</head>
 	<body style="word-wrap: break-word;">
+    <?php
+//    var_dump($details);
+    ?>
 		<div>
 			<h1 class="text-center database"><a href="http://localhost/tpsw/temp/profile1.php" class="datab">Database</a>
 				<small>
@@ -39,17 +42,63 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6 left_com">
 					<h2 class="text-center">Companies</h2>
+
                     <?php
-                        if (isset($details['success_add']) && $details['success_add'] == true) {
+
+                        if (isset($details['success']) && isset($details['success_id_company'])) {
+
+                            $success = $details['success'];
+                            $success_id = $details['success_id_company'];
+                            unset($details['success']);
+                            unset($details['success_id_company']);
+                        }
+                        else if (isset($details['success']) && isset($details['success_add_company'])) {
+
+                            $success = $details['success'];
+                            $success_add_company = $details['success_add_company'];
+                            unset($details['success']);
+                            unset($details['success_add_company']);
+                        }
+                        else if (isset($details['success']) && isset($details['success_delete_company'])) {
+
+                            $success = $details['success'];
+                            $success_delete_company = $details['success_delete_company'];
+                            unset($details['success']);
+                            unset($details['success_delete_company']);
+                        }
+
+                    ?>
+
+                    <?php
+                        if (isset($details['success_add_company']) && $details['success_add_company'] == true) {
                             echo '<div class="alert alert-danger alert-dismissible fade in" style="text-align:center" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                 <p>Company already added!</p>
                             </div>';
                         }
+                        if (isset($success) && $success == true && isset($success_add_company) && $success_add_company == true) {
+                            echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                <p>Company added Successfully!</p>
+                            </div>';
+                        }
+                        if (isset($success) && $success == true && isset($success_delete_company) && $success_delete_company == true) {
+                            echo '<div class="alert alert-warning alert-dismissible fade in" style="text-align:center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                <p>Company deleted Successfully!</p>
+                            </div>';
+                        }
+                        if (isset($success) && $success == false && isset($success_delete_company) && $success_delete_company == false) {
+                            echo '<div class="alert alert-danger alert-dismissible fade in" style="text-align:center" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                    <p>Company deletion failed!</p>
+                                </div>';
+                        }
                     ?>
+
 					<div id="com0"
                         <?php
-                        if (isset($details['company_exists']) || isset($details['success_add']) && $details['success_add'] == false) {
+                        if (isset($details['company_exists']) || isset($details['success_add_company']) && $details['success_add_company'] == false) {
                             echo 'style="display:none"';
                         }
                         ?>
@@ -100,17 +149,13 @@
                         "other_details"                 =>      "Details"
                     );
                     ?>
-                    <?php
 
-                        if (isset($details['success_add'])) {
-                            $success_add = $details['success_add'];
-                            unset($details['success_add']);
-                        }
 
-                    ?>
+                    <!--    Form to add new company begins     -->
+
                     <div class="acompany" id="change0"
                          <?php
-                             if (!isset($details['company_exists']) && !isset($success_add)) {
+                             if (!isset($details['company_exists']) || !isset($success_add_company)) {
                                  echo 'style="display:none"';
                              }
                          ?>
@@ -207,32 +252,30 @@
                         </div>
                     </div>
 
+                    <!--    Form to add new company ends    -->
+
+                    <!--    Companies list start    -->
+
                     <?php
-
-                    if (isset($details['success'])) {
-
-                        $success = $details['success'];
-                        $success_id = $details['success_id'];
-                        unset($details['success']);
-                        unset($details['success_id']);
-                    }
 
                     foreach ($details as $company) {
 //                        var_dump($details);
                         $company_name = $company->company_name;
                         $submit_id = $company->id;
-                        $f_branch = $company->open_branches;
+                        $f_branch = trim($company->open_branches);
                         $hashed_id = $company->hashed_id;
                         $active_suppli = $company->allow_active_suppli;
                         $change = "change".$submit_id;
                         $com = "com".$submit_id;
+
+//                        <!--    Displays company details starts   -->
 
                         echo '<div class="acompany">';
                             echo '<h3 class="text-center bluebox">' . $company->company_name . '</h3>';
 
                             echo '<div class="comp_details" id='.$com;
 
-                                if (isset($success) && $success == false && $success_id == $company->hashed_id) {
+                                if (isset($success) && $success == false && isset($success_id_company) && $success_id_company == $company->hashed_id) {
 
                                     echo ' style="display:none">';
 
@@ -247,7 +290,7 @@
                                 $first = "change".$submit_id;
                                 $second = "com".$submit_id;
 
-                                if (isset($success) && $success == true && $success_id == $hashed_id) {
+                                if (isset($success) && $success == true  && isset($success_id_company) && $success_id_company == $hashed_id) {
                                     echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                 <p>Updated Successfully!</p>
@@ -285,9 +328,15 @@
                                 echo '</div>';
                             echo '</div>';
 
+                        ?>
+
+                        <!--    Displays company details ends   -->
+
+                        <?php
+
                             echo '<div  id='.$change.' class="comp_details" ';
 
-                                if (isset($success) && $success == false && $success_id == $hashed_id) {
+                                if (isset($success) && $success == false && isset($success_id_company) && $success_id_company == $hashed_id) {
 
                                     echo ">";
 
@@ -300,13 +349,20 @@
                             ?>
 
                     <div class="row">
+                        <?php
 
-                        <a href="/delete" id= "trashnot1"data-toggle="tooltip" title="Delete notification" onclick="return window.confirm('Do you really want to delete the notification?')"><span class="glyphicon normalicon glyphicon-trash right0" aria-hidden="true"></span></a>
+                            echo '<form method = "post" action="'.base_url().'tpr/delete_company" class="form-horizontal" role="form">';
+                                echo '<input type="hidden" name = "hashed_id" value = '.$hashed_id.'>';
+                                echo '<input id= "trashnot1"data-toggle="tooltip" type="submit" class="btn btn-primary" value="Delete" name="delete" onclick="return window.confirm(\'Do you really want to delete the company?\')"/>';
+                            echo form_close();
+
+                        ?>
+<!--                        <a href="/delete" id= "trashnot1"data-toggle="tooltip" title="Delete Company" onclick="return window.confirm('Do you really want to delete the company?')"><span class="glyphicon normalicon glyphicon-trash right0" aria-hidden="true"></span></a>-->
 
                     </div>
                             <?php
                                 unset($company->submit_id);
-                                echo '<form method = "post" action="'.base_url().'tpr/submit" class="form-horizontal" role="form">';
+                                echo '<form method = "post" action="'.base_url().'tpr/submit_company" class="form-horizontal" role="form">';
                                     echo '<input type="hidden" name = "hashed_id" value = '.$hashed_id.'>';
                                     unset($company->open_branches);
                                     unset($company->allow_active_suppli);
@@ -319,7 +375,7 @@
                                     }
 
                                     foreach ($company2 as $key=>$value) {
-                                        if (isset($success) && $success == false && $success_id == $hashed_id) {
+                                        if (isset($success) && $success == false && isset($success_id_company) && $success_id_company == $hashed_id) {
                                             echo '<span style="color: red;text-align: center"> ';
                                             echo '<b>' . form_error($key, "<div class=\"error\">", "</div>") . '</b><br>';
                                             echo '</span>';
@@ -348,7 +404,7 @@
                                             echo '</div>';
                                         echo '</div>';
                                     echo '</div>';
-                                    $f_branch = explode(",", $f_branch);
+                                    $f_branch = explode(" ", $f_branch);
 //                                    var_dump($f_branch);
                                     echo '<div class="form-group">';
                                         echo '<label class="control-label question" for="name">Open For:</label>';
@@ -397,6 +453,7 @@
 
                         echo '</div>';
                     }
+
                     ?>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 right_com">
