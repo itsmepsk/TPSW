@@ -76,8 +76,9 @@ class Tpr extends CI_Controller {
                     $count->value--;
                     $this->companiesfunctions->update_config("companies_count", $count);
                     $details = $this->get_companies_data();
+//                    var_dump($details);
                     $details['success'] = true;
-                    $details['success_delete'] = true;
+                    $details['success_delete_company'] = true;
                     $data['details'] = $details;
                     $this->load->view('companies_admin', $data);
 
@@ -86,7 +87,7 @@ class Tpr extends CI_Controller {
 
                     $details = $this->get_companies_data();
                     $details['success'] = false;
-                    $details['success_delete'] = false;
+                    $details['success_delete_company'] = false;
                     $data['details'] = $details;
                     $this->load->view('companies_admin', $data);
 

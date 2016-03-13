@@ -353,7 +353,7 @@
 
                             echo '<form method = "post" action="'.base_url().'tpr/delete_company" class="form-horizontal" role="form">';
                                 echo '<input type="hidden" name = "hashed_id" value = '.$hashed_id.'>';
-                                echo '<input id= "trashnot1"data-toggle="tooltip" type="submit" class="btn btn-primary" value="Delete" name="delete" onclick="return window.confirm(\'Do you really want to delete the company?\')"/>';
+                                echo '<input id= "trashnot1"data-toggle="tooltip" type="submit" class="btn btn-primary" value="Delete" name="delete_company" onclick="return window.confirm(\'Do you really want to delete the company?\')"/>';
                             echo form_close();
 
                         ?>
