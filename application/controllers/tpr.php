@@ -130,7 +130,7 @@ class Tpr extends CI_Controller {
         else
         if (isset($_POST['update_company'])) {
 
-            $valid = $this->validate_fields();
+            $valid = $this->validate_company_fields();
 
             if ($valid) {
 

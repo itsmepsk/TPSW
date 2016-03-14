@@ -12,6 +12,8 @@
     <script src='<?php echo base_url(); ?>static/js/validation.js'></script>
 </head>
 
+
+
 <?php //var_dump($updated); ?>
 <?php //echo "Details.<br>"; ?>
 <?php //var_dump($details); ?>
@@ -155,7 +157,7 @@ $f_home_address = array(
     'type' => 'text',
     'name' => 'home_address',
     'id' => 'home_address',
-    'class' => 'form-control',
+    'class' => 'form-control tinymce',
     'required' => '',
     'value' => $f_data ['home_address'],
     'rows' => '3'

@@ -46,9 +46,9 @@
                     <?php
 
                         if (isset($details['success']) && isset($details['success_id_company'])) {
-
+                            
                             $success = $details['success'];
-                            $success_id = $details['success_id_company'];
+                            $success_id_company = $details['success_id_company'];
                             unset($details['success']);
                             unset($details['success_id_company']);
                         }
@@ -163,7 +163,7 @@
                         >
                         <h3 class="text-center bluebox">Company</h3>
                         <div class="comp_details">
-                            <form method = "post" action="<?php echo base_url(); ?>tpr/submit" class="form-horizontal" role="form">
+                            <form method = "post" action="<?php echo base_url(); ?>tpr/submit_company" class="form-horizontal" role="form">
                                 <?php
                                     if (isset($details['company_exists'])) {
                                         echo '<div class="alert alert-danger alert-dismissible fade in" style="text-align:center" role="alert">
@@ -289,12 +289,13 @@
                                 $com = "com".$submit_id;
                                 $first = "change".$submit_id;
                                 $second = "com".$submit_id;
-
                                 if (isset($success) && $success == true  && isset($success_id_company) && $success_id_company == $hashed_id) {
+
                                     echo '<div class="alert alert-success alert-dismissible fade in" style="text-align:center" role="alert">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
                                                 <p>Updated Successfully!</p>
                                                 </div>';
+
                                 }
 
                                 echo "<div align=\"right\" style=\"margin-right:5px\">
@@ -437,7 +438,7 @@
                                             echo '<br>';
                                         echo '</div>';
                                         echo '<div class="answerfill">';
-                                            echo '<input type="submit" class="btn btn-primary" value="update" name="update" />';
+                                            echo '<input type="submit" class="btn btn-primary" value="update" name="update_company" />';
                                             echo "<button type=\"button\" onclick=\"show('".$com."','".$change."')\" value=\"Cancel\" class=\"btn btn-default right0\"/>Cancel</button>";
                                         echo '</div>';
                                     echo '</div>';
